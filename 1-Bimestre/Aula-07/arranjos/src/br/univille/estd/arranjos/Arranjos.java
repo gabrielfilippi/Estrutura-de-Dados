@@ -2,7 +2,7 @@ package br.univille.estd.arranjos;
 
 
 /**
- * Lista de ExercÃ­cios
+ * Lista de Exercícios
  * Alterem este arquivo
  */
 public class Arranjos {
@@ -117,7 +117,7 @@ public class Arranjos {
 	 * Retorne a posicao.
 	 * Exemplo: Vetor recebido  3, 5, 6
 	 *          Elemento 5
-	 * Retorno: A posicao do elemento 5 Ã© 1
+	 * Retorno: A posicao do elemento 5 é 1
 	 * Se o elemento nao existir no vetor retorne -1
 	 */
 	 public static int exercicio10(int[] vetor, int elemento) {
