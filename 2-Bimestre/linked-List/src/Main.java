@@ -3,27 +3,11 @@ public class Main {
 	public static void main(String[] args) {
 	
 		
-		SLinkedList<String> list = new SLinkedList<String>();
 		
-		list.addFirst("A"); //3
-		list.addFirst("B"); //2
-		list.addFirst("C"); //1
-		list.addFirst("D"); //0
-		
-		System.out.println(list.get(0));
-		list.remove("A");
-		System.out.println();
-		
-		
-		
-		System.out.println(list.get(3));
-		System.out.println(list.get(2));
-		System.out.println(list.get(1));
-		System.out.println(list.get(0));
-		
-		
-		
-		
-		
+		SLinkedList<String> list2 = new SLinkedList<String>();
+		list2.add(0, "A");
+		list2.add(1, "B");
+		list2.add(2, "C");
+		System.out.println(list2.remove(1));
 	}
 }

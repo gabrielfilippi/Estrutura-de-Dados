@@ -11,17 +11,6 @@ public class SLinkedList<T> {
 		size = 0;
 	}
 
-	public T set(int index, T newElement) {
-		if (index < 0 || index >= size()) {
-			throw new IndexOutOfBoundsException();
-		}
-		Node<T> current = head;
-		for (int i = 0; i < index; i++) {
-			current = current.getNext();
-		}
-		current.setValue(newElement);
-		return current.getValue();
-	}
 
 	/*
 	 * Retorna o valor conforme a index da lista que foi solicitada
@@ -30,10 +19,13 @@ public class SLinkedList<T> {
 	 */
 	public T get(int index) {
 		// verificar se existe a index que foi solicitada
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
+		}
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
 		}
-
+		// VARIAVEL DO tipo Node recebe o head
 		Node<T> current = head;
 		int count = 0;
 		while (current != null) {
@@ -43,7 +35,28 @@ public class SLinkedList<T> {
 			count++;
 			current = current.getNext();
 		}
-		return tail.getValue();
+		throw new IndexOutOfBoundsException();
+	}
+	
+	public void set(int index, T value) {
+		// verificar se existe a index que foi solicitada
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
+		}
+		if (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		Node<T> current = head;
+		int count = 0;
+		while (current != null) {
+			if (count == index) {
+				current.setValue(value);
+				break;
+			}
+			count++;
+			current = current.getNext();
+		}
 	}
 
 	/**
@@ -97,27 +110,60 @@ public class SLinkedList<T> {
 		return tail.getValue();
 	}
 
-	public boolean remove(T data) {
-		Node<T> current = head;
-
-		if (current.getValue() == data) {
-			current = current.getNext();
-		} else {
-			Node<T> previous = head;
-			Node<T> current2 = current.getNext();
-
-			while (current2 != null) {
-				if (current2.getValue() == data) {
-					previous.setNext(current2.getNext());
-					break;
-				}
-
-				previous = current2;
-				current = current2.getNext();
-				return true;
-			}
+	public T remove(int index) {
+		// verificar se existe a index que foi solicitada
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
 		}
-		return false;
+		if (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException();
+		}
+		if(index==0) {
+			return removeFirst();
+		}
+		if(index==size()-1) {
+			return removeLast();
+		}
+		Node<T> current = head;
+		int count = 0;
+		T temp = null;
+		Node<T> previous = null;
+		while (current != null) {
+			if (count == index) {
+				temp = current.getValue();
+				previous.setNext(current.getNext());
+				break;
+			}
+			count++;
+			current = current.getNext();
+		}
+		return temp;
+	}
+	
+	public void add(int index, T value) {
+		// verificar se existe a index que foi solicitada
+		if (index < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		if(index==0) {
+			addFirst(value);
+		}
+		if(index==size()-1) {
+			addLast(value);
+		}
+		Node<T> current = head;
+		int count = 0;
+		Node<T> previous = null;
+		while (current != null) {
+			if (count == index) {
+				//adicionamos o valor
+				Node<T> newNode = new Node<>(value, current);
+				previous.setNext(newNode);
+				break;
+			}
+			count++;
+			current = current.getNext();
+		}
 	}
 
 	/**

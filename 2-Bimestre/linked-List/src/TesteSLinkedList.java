@@ -75,19 +75,24 @@ public class TesteSLinkedList {
 		list.addFirst(3); //1
 		list.addFirst(4); //0
 		
-		assertEquals(99, list.set(0, 99), "O set(0, 99) da lista deve ser o elemento 99");
+		list.set(0, 99);
+		
+		assertEquals(99, list.get(0), "O get(0) da lista deve ser o elemento 99");
+		
+		SLinkedList<Integer> list2 = new SLinkedList<>();
+		assertEquals(true, list2.isEmpty(), "O get(0) da lista deve ser o elemento 99");
 	}
 	
 	@Test
 	public void removeValor() {
 		SLinkedList<Integer> list = new SLinkedList<>();
 
-		list.addFirst(1); //3
-		list.addFirst(2); //2
-		list.addFirst(3); //1
-		list.addFirst(4); //0
+		list.add(0, 1);
+		list.add(1, 2);
+		list.add(2, 3);
+		System.out.println(list.remove(1));
 		
-		assertEquals(true, list.remove(1), "O get(0) da lista deve ser o elemento 4");
+		assertEquals(2, list.remove(1), "O remove(1) da lista deve ser o elemento 4");
 	}
 
 }
